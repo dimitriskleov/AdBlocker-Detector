@@ -1,4 +1,4 @@
-  <script>
+
     var adBlocker = 'no';
 
     function loadAd() {
@@ -24,7 +24,7 @@
           adBlocker = 'no';
           closeIframe();
           exportAdBlockStatus();
-          showMainContent(); // ✅ Show real content
+          showMainContent();
         };
 
         script.onerror = function () {
@@ -53,19 +53,34 @@
     }
 
     function showAdBlockerMessage() {
+      document.body.style.overflow = 'hidden';
+
+      var overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+      overlay.style.zIndex = '9999';
+      overlay.style.display = 'flex';
+      overlay.style.justifyContent = 'center';
+      overlay.style.alignItems = 'center';
+      overlay.style.pointerEvents = 'auto';
+
       var message = document.createElement('div');
-      message.style.position = 'fixed';
-      message.style.top = '50%';
-      message.style.left = '50%';
-      message.style.transform = 'translate(-50%, -50%)';
+      message.style.position = 'absolute';
       message.style.fontSize = '24px';
       message.style.fontWeight = 'bold';
       message.style.color = 'red';
       message.style.backgroundColor = 'white';
       message.style.padding = '20px';
-      message.style.zIndex = '9999';
+      message.style.borderRadius = '8px';
+      message.style.zIndex = '10000';
       message.textContent = "⚠️ TO CONTINUE, PLEASE DISABLE YOUR AD BLOCKER";
-      document.body.appendChild(message);
+
+      overlay.appendChild(message);
+      document.body.appendChild(overlay);
     }
 
     function showMainContent() {
@@ -86,4 +101,3 @@
     }
 
     window.onload = loadAd;
-  </script>
