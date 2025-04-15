@@ -65,7 +65,7 @@ function showAdBlockerMessage() {
   overlay.style.display = 'flex';
   overlay.style.justifyContent = 'center';
   overlay.style.alignItems = 'center';
-  overlay.style.pointerEvents = 'none';
+  overlay.style.pointerEvents = 'auto';
 
   var message = document.createElement('div');
   message.style.position = 'absolute';
@@ -77,18 +77,9 @@ function showAdBlockerMessage() {
   message.style.borderRadius = '8px';
   message.style.zIndex = '10000';
   message.textContent = "⚠️ TO CONTINUE, PLEASE DISABLE YOUR AD BLOCKER";
+  console.log("%c ad block detector script made by dimitriskleov ", "background: black; color: lime; padding: 4px; border-radius: 4px;");
 
   overlay.appendChild(message);
-
-  var smallText = document.createElement('div');
-  smallText.style.position = 'absolute';
-  smallText.style.fontSize = '12px';
-  smallText.style.fontWeight = 'normal';
-  smallText.style.color = 'gray';
-  smallText.style.bottom = '20px';
-  smallText.textContent = "made by dimitriskleov";
-
-  overlay.appendChild(smallText);
   document.body.appendChild(overlay);
 }
 
